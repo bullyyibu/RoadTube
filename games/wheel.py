@@ -28,6 +28,11 @@ class Wheel():
     def get_center(self):
         return self.tire_circle.getCenter()
 
+    def animate(self, win, dx, dy, n):
+      if n > 0:
+        self.move(dx, dy)
+        win.after(100, self.animate, win, dx, dy, n-1)
+
 
 # Define a main function; if you want to display graphics, run main()
 # after you load code into your interpreter
@@ -47,6 +52,8 @@ def main():
 
     # And finally, draw it 
     new_wheel.draw(new_win)
+
+    new_wheel.animate(new_win, 2, 2, 100)
 
     # Run the window loop (must be the *last* line in your code)
     new_win.mainloop()
